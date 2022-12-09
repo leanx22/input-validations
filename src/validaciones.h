@@ -94,13 +94,19 @@ int val_isAllCharS(char* str);
 /// @param eMsj Mensaje en caso de error de validacion.
 /// @param minDigitos Cantidad minima de digitos.
 /// @param maxDigitos Cantidad maxima de digitos.(Puede ser igual a la minima si se desea que
-/// se ingrese una cantidad de digitos exacta).
+/// se ingrese una cantidad de digitos exacta)RECOMENDADO.
 /// @param reintentos
 /// @return Retorna 0 si OK o -1 en caso de error.
 int val_getDNI(long int* resultado,char* msj,char* eMsj,int minDigitos,int maxDigitos,int reintentos);
 
-
-
+/// @brief Funcion para el ingreso de un numero telefonico de 8 o 10 digitos
+///
+/// @param resultado Puntero a variable de tipo long int donde se guardara el resultado.
+/// @param msj Mensaje a mostrar al usuario.
+/// @param eMsj Mensaje en caso de error de validacion.
+/// @param reintentos
+/// @return Retorna 0 si OK o -1 en caso de error.
+int val_getPhone(long int* resultado,char* msj,char* eMsj,int reintentos);
 
 
 

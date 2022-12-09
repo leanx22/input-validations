@@ -524,7 +524,7 @@ int val_isAllCharS(char* str)
  * NOTAS:
  *	-Se trabaja con el tipo de dato LONG.
  *	-El minimo y el maximo de digitos PUEDEN SER IGUALES si se desea obligar al usuario a ingresar
- *	una cantidad de digitos exacta.
+ *	una cantidad de digitos exacta(recomendado).
  *	-No se admiten guiones.
  */
 int val_getDNI(long int* resultado,char* msj,char* eMsj,int minDigitos,int maxDigitos,int reintentos)
@@ -574,6 +574,67 @@ int val_getDNI(long int* resultado,char* msj,char* eMsj,int minDigitos,int maxDi
 							*resultado = atol(buffer);
 							reintentos=0;
 							ret = 0;
+							break;
+						}
+					}else{
+						printf("\n\a[!]%s",eMsj);
+						reintentos--;
+						break;
+					}
+				}
+			}
+		}
+	}
+	return ret;
+}
+
+/*Funcion para el ingreso de numero telefonico.
+ * NOTAS:
+ * -El numero debe tener 8 digitos (o 10 en caso de +11/15).
+ * -No admite guiones, se recomienda aclarar esto al usuario.
+*/
+int val_getPhone(long int* resultado,char* msj,char* eMsj,int reintentos)
+{
+	int ret=-1;
+	int size=64;
+	int contador;
+	char buffer[size];
+
+	if(resultado!=NULL && msj!=NULL && eMsj!=NULL && reintentos>0)
+	{
+		while(reintentos>0)
+		{
+			contador=0;
+			printf("\n>%s",msj);
+			readFromConsole(buffer,size);
+			for(int i=0;i<size;i++)
+			{
+				if(buffer[i]!='\0')
+				{
+					if(buffer[i]<'0'||buffer[i]>'9')
+					{
+						reintentos--;
+						printf("\n\a[!]%s",eMsj);
+						break;
+					}
+					else
+					{
+						contador++;
+					}
+				}
+				else
+				{
+					if(contador>=1)
+					{
+						if(contador==8 || contador==10)
+						{
+							*resultado = atol(buffer);
+							reintentos=0;
+							ret = 0;
+							break;
+						}else
+						{
+							printf("\n\aEl numero debe tener 8 o 10 digitos sin guion.");
 							break;
 						}
 					}else{

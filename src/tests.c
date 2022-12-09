@@ -9,7 +9,7 @@ int main(void)
 	int numerito;
 	float numeritoF;
 	long int identificacion;
-
+	long int telefono;
 
 	if(val_getStr(cadenita,"Ingrese texto: ","[MENSAJE DE ERROR DE LA FUNCION]",50,3)==0)
 	{
@@ -105,7 +105,7 @@ int main(void)
 	}
 	printf("\n");
 	system("PAUSE");
-
+//-----------------------------------------------------------------------------------------------
 	system("CLS");
 	if(val_getDNI(&identificacion,"Ingrese su DNI: ","[MENSAJE DE ERROR DE LA FUNCION]",8,8,3)==0)
 	{
@@ -115,6 +115,16 @@ int main(void)
 	}
 	printf("\n");
 	system("PAUSE");
+//-----------------------------------------------------------------------------------------------
 
+	system("CLS");
+	if(val_getPhone(&telefono,"Ingrese su telefono (sin guiones ni 0 Ej: 15/11xxxxxxxx): ","[MENSAJE DE ERROR DE LA FUNCION]",3)==0)
+	{
+		printf("\nRetorno correcto | Resultado: [>%ld<]",telefono);
+	}else{
+		printf("\nSalio todo como el orto, retorno algo distinto a 0.");
+	}
+	printf("\n");
+	system("PAUSE");
 return 0;
 }
