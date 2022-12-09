@@ -80,6 +80,28 @@ int val_isAlphaNumeric(char* str);
 /// o false(0) en caso de encontrar un caracter no alfabetico.
 int val_isAllChar(char* str);
 
+/// @brief  Funcion parecida a isAllChar, a diferenci de que esta PERMITE ESPACIOS.
+///
+/// @param str Cadena a verificar.
+/// @return Retorna true(1) si la validacion es positiva,
+/// o false(0) en caso de encontrar un caracter no alfabetico.
+int val_isAllCharS(char* str);
+
+/// @brief Funcion que pide y valida un numero de identificacion(DNI)
+///
+/// @param resultado Puntero a variable long int donde se guardara el resultado.
+/// @param msj Mensaje a mostrar al usuario.
+/// @param eMsj Mensaje en caso de error de validacion.
+/// @param minDigitos Cantidad minima de digitos.
+/// @param maxDigitos Cantidad maxima de digitos.(Puede ser igual a la minima si se desea que
+/// se ingrese una cantidad de digitos exacta).
+/// @param reintentos
+/// @return Retorna 0 si OK o -1 en caso de error.
+int val_getDNI(long int* resultado,char* msj,char* eMsj,int minDigitos,int maxDigitos,int reintentos);
+
+
+
+
 
 
 

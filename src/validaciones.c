@@ -480,3 +480,110 @@ int val_isAllChar(char* str)
 	return ret;
 }
 
+/*Funcion que valida que todos los elementos de la cadena sean alfabeticos o un espacio(S=space).
+ * Suele usarse para verificar nombres(nombre apellido).
+*/
+int val_isAllCharS(char* str)
+{
+	int ret=1;
+	int size;
+	int contador=0;
+
+	if(str!=NULL)
+	{
+		size=strlen(str);
+		for(int i=0;i<size;i++)
+		{
+			if((*(str+i))!='\0')
+			{
+				if(isalpha(str[i])==0&&str[i]!=' ')
+				{
+					ret=0;
+					break;
+				}else{
+					contador++;
+				}
+			}
+
+		}
+
+		if(contador==0)
+		{
+			ret=0;
+		}
+
+	}else{
+		printf("\n\a[!]ERROR: Array NULL.\n");
+		system("PAUSE");
+	}
+
+	return ret;
+}
+
+/* Funcion para pedir el ingreso de un numero de identificacion(sin guiones)DNI.
+ * NOTAS:
+ *	-Se trabaja con el tipo de dato LONG.
+ *	-El minimo y el maximo de digitos PUEDEN SER IGUALES si se desea obligar al usuario a ingresar
+ *	una cantidad de digitos exacta.
+ *	-No se admiten guiones.
+ */
+int val_getDNI(long int* resultado,char* msj,char* eMsj,int minDigitos,int maxDigitos,int reintentos)
+{
+	int ret=-1;
+	int size=64;
+	int contador;
+	char buffer[size];
+
+	if(resultado!=NULL && msj!=NULL && eMsj!=NULL && reintentos>0)
+	{
+		while(reintentos>0)
+		{
+			contador=0;
+			printf("\n>%s",msj);
+			readFromConsole(buffer,size);
+			for(int i=0;i<size;i++)
+			{
+				if(buffer[i]!='\0')
+				{
+					if(buffer[i]<'0'||buffer[i]>'9')
+					{
+						reintentos--;
+						printf("\n\a[!]%s",eMsj);
+						break;
+					}
+					else
+					{
+						contador++;
+					}
+				}
+				else
+				{
+					if(contador>=1)
+					{
+						if(contador<minDigitos || contador>maxDigitos)
+						{
+							if(minDigitos!=maxDigitos)
+							{
+								printf("\n\a[!]ERROR: El DNI debe tener, minimo %d y maximo %d digitos.",minDigitos,maxDigitos);
+							}else{
+								printf("\n\a[!]ERROR: El DNI debe tener %d digitos, ni mas, ni menos.",minDigitos);
+							}
+							break;
+						}else
+						{
+							*resultado = atol(buffer);
+							reintentos=0;
+							ret = 0;
+							break;
+						}
+					}else{
+						printf("\n\a[!]%s",eMsj);
+						reintentos--;
+						break;
+					}
+				}
+			}
+		}
+	}
+	return ret;
+}

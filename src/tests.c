@@ -8,7 +8,9 @@ int main(void)
 	char cadenita[50];
 	int numerito;
 	float numeritoF;
-/*
+	long int identificacion;
+
+
 	if(val_getStr(cadenita,"Ingrese texto: ","[MENSAJE DE ERROR DE LA FUNCION]",50,3)==0)
 	{
 		printf("\nRetorno correcto | Resultado: [>%s<]",cadenita);
@@ -82,13 +84,34 @@ int main(void)
 	printf("\n");
 	system("PAUSE");
 //-----------------------------------------------------------------------------------------------------
-*/
+
 	system("CLS");
 	if(val_isAllChar("a")==1)
 	{
 		printf("\nTodos los caracteres son letras");
 	}else{
 		printf("\nHay un caracter no alfabetico!.");
+	}
+	printf("\n");
+	system("PAUSE");
+
+//-----------------------------------------------------------------------------------------------
+	system("CLS");
+	if(val_isAllCharS("Nombre Apellido")==1)
+	{
+		printf("\nEs una cadena con espacios.");
+	}else{
+		printf("\nNO pasa la validacion.");
+	}
+	printf("\n");
+	system("PAUSE");
+
+	system("CLS");
+	if(val_getDNI(&identificacion,"Ingrese su DNI: ","[MENSAJE DE ERROR DE LA FUNCION]",8,8,3)==0)
+	{
+		printf("\nRetorno correcto | Resultado: [>%ld<]",identificacion);
+	}else{
+		printf("\nSalio todo como el orto, retorno algo distinto a 0.");
 	}
 	printf("\n");
 	system("PAUSE");
